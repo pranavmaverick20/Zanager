@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const { URI } = require('./environment.js');
 const app = express();
 
-const URI = "mongodb+srv://inotebook:inotebook@inotebookcluster.php00.mongodb.net/uc-task-2?retryWrites=true&w=majority&appName=inotebookcluster";
 const backend_port = 5000;
 
 
