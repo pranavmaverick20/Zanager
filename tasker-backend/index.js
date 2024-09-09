@@ -2,8 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { URI } = require('./environment.js');
 const app = express();
-
+const authrouter = require('./routes/auth.js')
 const backend_port = 5000;
+//add cors
+
+app.use(express.json());
+app.use('/api/auth', authrouter);
 
 
 mongoose.connect(URI)
