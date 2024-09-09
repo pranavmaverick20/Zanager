@@ -5,7 +5,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.8.0",
     "mongoose": "^8.6.0",
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "otp-generator": "^4.0.1"
   },
   "name": "tasker-backend",
   "version": "1.0.0",
