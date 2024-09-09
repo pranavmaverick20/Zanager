@@ -6,7 +6,7 @@ const otp_schema = mongoose.Schema({
         unique: true
     },
     code: {
-        type: String,
+        type: Number,
         required: true
     },
     expiry: {
