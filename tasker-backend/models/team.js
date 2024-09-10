@@ -7,6 +7,11 @@ const team_schema = mongoose.Schema({
     description: {
         type: String,
         required: true
+    },
+    code: {
+        type: String,
+        required: true,
+        unique: true
     }
 });
 const team_model = mongoose.model("Team", team_schema);
