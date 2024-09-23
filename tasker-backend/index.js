@@ -4,7 +4,7 @@ const { URI } = require('./environment.js');
 const app = express();
 const authrouter = require('./routes/auth.js');
 const teamrouter = require('./routes/team.js');
-const backend_port = 5000;
+const backend_port = 5001;
 //add cors
 
 app.use(express.json());
@@ -15,7 +15,7 @@ app.use('/api/team', teamrouter)
 mongoose.connect(URI)
     .then(() => {
         console.log("DB Connected");
-        app.listen(5000, () => {
+        app.listen(backend_port, () => {
             console.log(`Tasker backend listening on port ${backend_port}`);
         });
     })
