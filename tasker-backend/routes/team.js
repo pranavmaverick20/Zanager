@@ -10,7 +10,7 @@ const otp_gen = require('otp-generator');
 router.post('/createteam', fetchuser, async (req, res) => {
     try {
         if (!req.data.id) {
-            return res.status(404).send({ success: false, message: "User not found", code: "unf" });
+            return res.status(404).json({ success: false, message: "User not found", code: "unf" });
         }
         const { name, description } = req.body;
         if (!name || !description) {
@@ -31,7 +31,7 @@ router.post('/createteam', fetchuser, async (req, res) => {
 router.get('/userteams', fetchuser, async (req, res) => {
     try {
         if (!req.data.id) {
-            return res.status(404).send({ success: false, message: "User not found", code: "unf" });
+            return res.status(404).json({ success: false, message: "User not found", code: "unf" });
         }
         const userteams = await UserTeam.find({ userId: req.data.id });
         const teamids = userteams.map(userteam => userteam.teamId);
@@ -51,7 +51,7 @@ router.post('/jointeam', fetchuser, async (req, res) => {
         const userId = req.data.id;
         const code = req.body.code;
         if (!userId || !code) {
-            return res.status(404).send({ success: false, message: "User or team not found", code: "utnf" });
+            return res.status(404).json({ success: false, message: "User or team not found", code: "utnf" });
         }
         const team = await Team.findOne({ code });
         if (!team) {
@@ -91,7 +91,7 @@ router.delete('/leaveteam', fetchuser, async (req, res) => {
         const userId = req.data.id;
         const teamId = req.body.id;
         if (!userId || !teamId) {
-            return res.status(404).send({ success: false, message: "User or team not found", code: "utnf" });
+            return res.status(404).json({ success: false, message: "User or team not found", code: "utnf" });
         }
         await UserTeam.findOneAndDelete({ userId, teamId });
         return res.status(200).json({ success: true });
