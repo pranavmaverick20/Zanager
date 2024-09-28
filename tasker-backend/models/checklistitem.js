@@ -5,7 +5,7 @@ const checklistitem_schema = mongoose.Schema({
         required: true
     },
     status: {
-        type: Number,
+        type: Boolean,
         required: true
     },
     rank: {
