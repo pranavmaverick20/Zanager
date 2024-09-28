@@ -5,8 +5,8 @@ const router = express.Router();
 const fetchuser = require("../middleware/fetchuser");
 const otp_gen = require("otp-generator");
 
-//create personal team for user
-//the  user who creates the team is automatically a part of the team
+// Create personal team for user
+// The user who creates the team is automatically a part of the team
 router.post("/createteam", fetchuser, async (req, res) => {
   try {
     if (!req.data.id) {
@@ -26,7 +26,7 @@ router.post("/createteam", fetchuser, async (req, res) => {
       lowerCaseAlphabets: true,
     });
     while (await Team.findOne({ code })) {
-      //if code is already taken by another team
+      // If code is already taken by another team
       code = otp_gen.generate(6, {
         upperCaseAlphabets: true,
         specialChars: false,
@@ -40,7 +40,7 @@ router.post("/createteam", fetchuser, async (req, res) => {
     });
     return res
       .status(200)
-      .json({ success: true, message: "team created", team, userteam });
+      .json({ success: true, message: "Team created", team, userteam });
   } catch (error) {
     return res
       .status(500)
