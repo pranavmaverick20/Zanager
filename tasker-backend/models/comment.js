@@ -8,7 +8,7 @@ const comment_schema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true
     },
-    tex: {
+    text: {
         type: String,
         required: true
     }

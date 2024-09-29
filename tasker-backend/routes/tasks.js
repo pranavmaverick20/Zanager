@@ -35,7 +35,7 @@ router.post("/createtask", fetchuser, async (req, res) => {
     });
     res.status(200).json({ success: true, newTask });
   } catch (error) {
-    return res.status(500).json({ success: false, error, message: "Internal server error" });
+    return res.status(500).json({ success: false, error, message: "Internal server error", code: "ise" });
   }
 });
 
@@ -51,7 +51,7 @@ router.get("/tasksyouassigned", fetchuser, async (req, res) => {
     }
     return res.status(200).json({ success: true, tasks });
   } catch (error) {
-    return res.status(500).json({ success: false, error, message: "Internal server error" });
+    return res.status(500).json({ success: false, error, message: "Internal server error", code: "ise" });
   }
 });
 
@@ -67,7 +67,7 @@ router.get("/mytasks", fetchuser, async (req, res) => {
     }
     return res.status(200).json({ success: true, tasks });
   } catch (error) {
-    return res.status(500).json({ success: false, error, message: "Internal server error" });
+    return res.status(500).json({ success: false, error, message: "Internal server error", code: "ise" });
   }
 });
 
@@ -83,7 +83,7 @@ router.get("/taskbyid/:id", async (req, res) => {
     }
     return res.status(200).json({ success: true, task });
   } catch (error) {
-    return res.status(500).json({ success: false, error, message: "Internal server error" });
+    return res.status(500).json({ success: false, error, message: "Internal server error", code: "ise" });
   }
 });
 
@@ -113,7 +113,7 @@ router.put("/updatebyid/:id", fetchuser, async (req, res) => {
     const updatedtask = await Task.findByIdAndUpdate(req.params.id, { $set: uptask }, { new: true });
     return res.status(200).json({ success: true, updated: updatedtask });
   } catch (error) {
-    return res.status(500).json({ success: false, error, message: "Internal server error" });
+    return res.status(500).json({ success: false, error, message: "Internal server error", code: "ise" });
   }
 });
 
@@ -132,9 +132,11 @@ router.delete("/deletebyid/:id", fetchuser, async (req, res) => {
       return res.status(404).json({ success: false, message: "Restricted access", code: "ri" });
     }
     await Task.findByIdAndDelete(req.params.id);
+    //deleting all comments of given task
+    await Comment.deleteMany({ taskId: task.id });
     return res.status(200).json({ success: true, message: "deleted successfully" });
   } catch (error) {
-    return res.status(500).json({ success: false, error, message: "Internal server error" });
+    return res.status(500).json({ success: false, error, message: "Internal server error", code: "ise" });
   }
 });
 
@@ -156,7 +158,7 @@ router.patch('/status/:id', fetchuser, async (req, res) => {
     return res.status(200).json({ success: true, message: "Updated" });
   }
   catch (error) {
-    return res.status(500).json({ success: false, error, message: "Internal server error" });
+    return res.status(500).json({ success: false, error, message: "Internal server error", code: "ise" });
   }
 });
 

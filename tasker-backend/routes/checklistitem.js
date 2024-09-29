@@ -18,7 +18,7 @@ router.post('/createitem/:taskid', async (req, res) => {
         res.status(200).json({ success: true, check });
     }
     catch (error) {
-        return res.status(500).json({ success: false, error, message: "Internal server error" });
+        return res.status(500).json({ success: false, error, message: "Internal server error", code: "ise" });
     }
 });
 
@@ -38,7 +38,7 @@ router.get('/getitems/:id', async (req, res) => {
         }
         return res.status(200).json({ success: true, items });
     } catch (error) {
-        return res.status(500).json({ success: false, error, message: "Internal server error" });
+        return res.status(500).json({ success: false, error, message: "Internal server error", code: "ise" });
     }
 });
 
@@ -65,7 +65,7 @@ router.put('/updateitem/:id', async (req, res) => {
         const upitem = await Check.findByIdAndUpdate(id, { $set: nitem }, { new: true });
         return res.status(200).json({ success: true, upitem });
     } catch (error) {
-        return res.status(500).json({ success: false, error, message: "Internal server error" });
+        return res.status(500).json({ success: false, error, message: "Internal server error", code: "ise" });
     }
 });
 
@@ -82,7 +82,7 @@ router.patch('/status/:id/:s', async (req, res) => {
         const upitem = await Check.findByIdAndUpdate(id, { $set: nitem }, { new: true });
         return res.status(200).json({ success: true, upitem });
     } catch (error) {
-        return res.status(500).json({ success: false, error, message: "Internal server error" });
+        return res.status(500).json({ success: false, error, message: "Internal server error", code: "ise" });
     }
 });
 
@@ -96,7 +96,7 @@ router.delete('/deleteitem/:id', async (req, res) => {
         await Check.findByIdAndDelete(id);
         return res.status(200).json({ success: true, message: "Deleted" });
     } catch (error) {
-        return res.status(500).json({ success: false, error, message: "Internal server error" });
+        return res.status(500).json({ success: false, error, message: "Internal server error", code: "ise" });
     }
 });
 

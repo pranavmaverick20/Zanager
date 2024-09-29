@@ -31,7 +31,7 @@ router.post("/createuser", async (req, res) => {
     const authtoken = jwt.sign({ id: newUser._id, email: newUser.email }, JWT_secret, { expiresIn: "30d" });
     return res.status(200).json({ success: true, authtoken });
   } catch (error) {
-    return res.status(500).json({ success: false, error, message: "Internal server error" });
+    return res.status(500).json({ success: false, error, message: "Internal server error", code: "ise" });
   }
 });
 
@@ -47,7 +47,7 @@ router.post("/login", async (req, res) => {
     const authtoken = jwt.sign({ id: user._id, email: user.email }, JWT_secret, { expiresIn: "30d" });
     return res.status(200).json({ success: true, authtoken });
   } catch (error) {
-    return res.status(500).json({ success: false, error, message: "Internal server error" });
+    return res.status(500).json({ success: false, error, message: "Internal server error", code: "ise" });
   }
 });
 
@@ -60,7 +60,7 @@ router.get("/getuser", fetchuser, async (req, res) => {
     }
     res.status(200).json({ success: true, user });
   } catch (error) {
-    return res.status(500).json({ success: false, error, message: "Internal server error" });
+    return res.status(500).json({ success: false, error, message: "Internal server error", code: "ise" });
   }
 });
 
@@ -89,7 +89,7 @@ router.post("/sendotp", fetchuser, async (req, res) => {
     );
     return res.status(200).json({ success: true, otp_sent });
   } catch (error) {
-    return res.status(500).json({ success: false, error, message: "Internal server error" });
+    return res.status(500).json({ success: false, error, message: "Internal server error", code: "ise" });
   }
 });
 
@@ -110,7 +110,7 @@ router.post("/verifyotp", fetchuser, async (req, res) => {
     const user = await User.findByIdAndUpdate(otp.userId, { isVerified: true }, { new: true }).select("-password");
     return res.status(200).json({ success: true, user, message: "Verified" });
   } catch (error) {
-    return res.status(500).json({ success: false, error, message: "Internal server error" });
+    return res.status(500).json({ success: false, error, message: "Internal server error", code: "ise" });
   }
 });
 
@@ -141,7 +141,7 @@ router.post("/changepassword", fetchuser, async (req, res) => {
     user = await User.findByIdAndUpdate(req.data.id, { password: new_pass }, { new: true });
     return res.status(200).json({ success: true, message: "Password updated" });
   } catch (error) {
-    return res.status(500).json({ success: false, error, message: "Internal server error" });
+    return res.status(500).json({ success: false, error, message: "Internal server error", code: "ise" });
   }
 });
 
