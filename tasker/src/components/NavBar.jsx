@@ -1,6 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 export const NavBar = () => {
+  const location = useLocation();
   return (
     <div>
       <div className="flex flex-row justify-between items-center py-4 px-8 bg-[#023E8A] ">
@@ -11,14 +12,19 @@ export const NavBar = () => {
         </div>
         <div>
           <ul className="flex flex-row basis-8 space-x-10 text-center">
-            <li className="navbar-item hover:cursor-pointer">
+            <li
+              className={`navbar-item hover:cursor-pointer ${
+                location.pathname === "/login" && "border-[#71A5DE] border-4"
+              }`}
+            >
               <Link to="/login">Login</Link>
             </li>
-            <li className="navbar-item hover:cursor-pointer">
-              <Link to="/signup">Signup</Link>
-            </li>
-            <li className="navbar-item hover:cursor-pointer">
-              <Link about="/about">About</Link>
+            <li
+              className={`navbar-item hover:cursor-pointer ${
+                location.pathname === "/about" && "border-[#71A5DE] border-4"
+              }`}
+            >
+              <Link to="/about">About</Link>
             </li>
           </ul>
         </div>
