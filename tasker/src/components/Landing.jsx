@@ -9,7 +9,7 @@ const Landing = () => {
           <h1 className="font-sans text-5xl font-extrabold text-[#E1ECF7]">
             Welcome to
           </h1>
-          <h1 className="font-zanager text-5xl font-extrabold ml-4 text-[#E1ECF7]">
+          <h1 className="font-zanager text-5xl font-extrabold ml-3 text-[#E1ECF7]">
             Zanager!
           </h1>
         </div>
