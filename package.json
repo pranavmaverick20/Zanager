@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"vite --config ./tasker/vite.config.js\" \"nodemon tasker-backend/index.js\""
+    "start": "concurrently \"vite ./tasker\" \"nodemon tasker-backend/index.js\""
   },
   "keywords": [],
   "author": "",

@@ -7,10 +7,12 @@ const teamrouter = require('./routes/teams.js');
 const taskrouter = require('./routes/tasks.js');
 const checkrouter = require('./routes/checklistitem.js');
 const commentrouer = require('./routes/comments.js');
+const cors = require('cors');
 const backend_port = 5001;
 //add cors
 
 app.use(express.json());
+app.use(cors());
 app.use('/api/auth', authrouter);
 app.use('/api/team', teamrouter)
 app.use('/api/tasks', taskrouter);
