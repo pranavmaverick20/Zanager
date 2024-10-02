@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 const Landing = () => {
+  const navigate = useNavigate;
+
   return (
     <div>
       <div className="flex items-center flex-col justify-center h-screen bg-gradient-to-tl from-[#98edb0] bg-[#023E8A]">

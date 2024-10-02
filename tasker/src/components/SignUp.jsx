@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [match, setMatch] = useState(true);
@@ -9,7 +10,7 @@ const SignUp = () => {
     password: "",
     cpass: "",
   });
-
+  const navigate = useNavigate();
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
@@ -41,7 +42,9 @@ const SignUp = () => {
         return;
       }
     } else {
-      localStorage.setItem("authtoken", response.authtoken); //navigate to verification page
+      localStorage.setItem("authtoken", response.authtoken);
+      console.log(localStorage.getItem("authtoken"));
+      navigate("/verify"); //navigate to verification page
       setVe(true);
       return;
     }
