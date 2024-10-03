@@ -48,15 +48,6 @@ const App = () => {
     getUser();
   }, []);
 
-  useEffect(() => {
-    // Navigate based on verification status
-    if (localStorage.getItem("authtoken")) {
-      if (!isV) {
-        navigate("/verify");
-      }
-    }
-  }, [isV, navigate]);
-
   return (
     <div>
       <NavBar />

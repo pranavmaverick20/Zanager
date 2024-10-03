@@ -43,7 +43,6 @@ const SignUp = () => {
       }
     } else {
       localStorage.setItem("authtoken", response.authtoken);
-      console.log(localStorage.getItem("authtoken"));
       navigate("/verify"); //navigate to verification page
       setVe(true);
       return;
@@ -59,18 +58,18 @@ const SignUp = () => {
         >
           <p className="text-4xl font-bold text-gray-800">Sign Up!</p>
           <div className="w-full">
-            <label className="py-4 text-md font-medium text-gray-700">
+            <label className="py-4 mx-1 text-md font-medium text-gray-700">
               Name
             </label>
             <input
               onChange={onChange}
               name="name"
               value={credentials.name}
-              className="block border-black border-3 w-full rounded-xl p-2 h-12"
+              className="block mt-2 border-black border-3 w-full rounded-xl p-2 h-12"
             ></input>
           </div>
           <div className="w-full">
-            <label className="py-4 text-md font-medium text-gray-700">
+            <label className="py-4 mx-1 text-md font-medium text-gray-700">
               Email
             </label>
             <input
@@ -79,18 +78,20 @@ const SignUp = () => {
               type="email"
               minLength={5}
               value={credentials.email}
-              className="block border-black border-3 w-full rounded-xl p-2 h-12"
+              className="block mt-2 border-black border-3 w-full rounded-xl p-2 h-12"
             ></input>
             {!ve && (
-              <p className="text-red-600 font-normal">*User already exists</p>
+              <p className="text-red-600 h-12 font-normal">
+                *User already exists
+              </p>
             )}
           </div>
           <div className="w-full">
-            <label className="py-4 text-md font-medium text-gray-700">
+            <label className="py-4 mx-1 text-md font-medium text-gray-700">
               Password
             </label>
             <input
-              className="block border-black border-3 w-full rounded-xl p-2 h-12"
+              className="block mt-2 border-black border-3 w-full rounded-xl p-2 h-12"
               type="password"
               onChange={onChange}
               name="password"
@@ -99,21 +100,19 @@ const SignUp = () => {
             ></input>
           </div>
           <div className="w-full">
-            <label className="py-4 text-md font-medium text-gray-700">
+            <label className="py-4 mx-1 text-md font-medium text-gray-700">
               Confirm Password
             </label>
             <input
-              className="block border-black border-3 w-full rounded-xl p-2 h-12"
+              className="block mt-2 border-black border-3 w-full rounded-xl p-2 h-12"
               type="password"
               onChange={onChange}
               name="cpass"
               value={credentials.cpass}
             ></input>
-            {!match && (
-              <p className="text-red-600 font-normal">
-                *Passwords do not match
-              </p>
-            )}
+            <p className="text-red-600 h-8 mt-3 font-normal">
+              {!match && "*Passwords do not match"}
+            </p>
           </div>
           <button
             type="submit"

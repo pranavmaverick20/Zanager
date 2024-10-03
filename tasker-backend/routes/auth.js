@@ -104,7 +104,7 @@ router.post("/verifyotp", fetchuser, async (req, res) => {
     if (now > otp.expiry) {
       return res.status(401).json({ success: false, error: "OTP expired", code: "oe" });
     }
-    if (otp_input !== otp.code) {
+    if (otp_input != otp.code) {
       return res.status(401).json({ success: false, error: "Incorrect OTP", code: "io" });
     }
     const user = await User.findByIdAndUpdate(otp.userId, { isVerified: true }, { new: true }).select("-password");
