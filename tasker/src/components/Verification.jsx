@@ -177,9 +177,9 @@ const Verification = () => {
             <p
               className={`${
                 message === "Logged in... redirecting"
-                  ? `text-black`
-                  : `text-red-600`
-              } font-normal`}
+                  ? `text-black font-bold text-2xl`
+                  : `text-red-600 font-normal`
+              } `}
             >
               {message}
             </p>

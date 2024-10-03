@@ -20,7 +20,9 @@ export const NavBar = () => {
             {!localStorage.getItem("authtoken") ? (
               <li
                 className={`navbar-item hover:cursor-pointer ${
-                  location.pathname === "/login" && "border-[#71A5DE] border-4"
+                  location.pathname == "/login"
+                    ? "border-[#71A5DE] border-4"
+                    : "border-[#98edb0] border-4"
                 }`}
               >
                 <Link to="/login">Login</Link>
@@ -29,7 +31,9 @@ export const NavBar = () => {
               <li
                 onClick={handleLogout}
                 className={`navbar-item hover:cursor-pointer ${
-                  location.pathname === "/login" && "border-[#71A5DE] border-4"
+                  location.pathname == "/login"
+                    ? "border-[#71A5DE] border-4"
+                    : "border-[#98edb0] border-4"
                 }`}
               >
                 <Link to="/login">Log out</Link>

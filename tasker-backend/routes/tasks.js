@@ -62,9 +62,6 @@ router.get("/mytasks", fetchuser, async (req, res) => {
       return res.status(404).json({ success: false, message: "User not found", code: "unf" });
     }
     const tasks = await Task.find({ assigneeId: req.data.id });
-    if (!tasks.length) {
-      return res.status(200).json({ success: true, message: "No tasks assigned to you" });
-    }
     return res.status(200).json({ success: true, tasks });
   } catch (error) {
     return res.status(500).json({ success: false, error, message: "Internal server error", code: "ise" });
