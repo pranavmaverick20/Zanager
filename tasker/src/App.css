@@ -1,10 +1,11 @@
 
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .navbar-item {
-  @apply text-lg text-black min-w-10 font-navitemfont hover:bg-[#CAF0F8] py-1 px-3 text-center basis-2 items-center rounded-3xl bg-[#98edb0] flex-1 text-nowrap flex justify-center ; /* Center content */
-  transition: background-color 0.3s ease-in-out;
+  @apply text-lg text-black min-w-10 font-navitemfont hover:bg-[#CAF0F8] py-1 px-3 text-center basis-2 items-center rounded-3xl bg-[#98edb0] flex-1 text-nowrap flex justify-center; /* Center content */
 }
 

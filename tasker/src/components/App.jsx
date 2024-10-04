@@ -12,21 +12,10 @@ import About from "./About";
 import SignUp from "./SignUp";
 import Home from "./Home";
 import Verification from "./Verification";
+import Teams from "./Teams";
+import { CredCheckState } from "../context/CredCheckContext";
 
 const App = () => {
-  // useEffect(() => {
-  //   const clearLocalStorage = () => {
-  //     localStorage.clear();
-  //   };
-
-  //   // Clear local storage on window unload (close or refresh)
-  //   window.addEventListener("unload", clearLocalStorage);
-
-  //   return () => {
-  //     // Clean up the event listener when the component is unmounted
-  //     window.removeEventListener("unload", clearLocalStorage);
-  //   };
-  // }, []);
   const [isV, setV] = useState(false);
   const navigate = useNavigate(); // Hook to programmatically navigate
 
@@ -50,18 +39,21 @@ const App = () => {
 
   return (
     <div>
-      <NavBar />
-      <Routes>
-        {/* If user is not logged in, take them to the landing page */}
-        <Route
-          path="/"
-          element={localStorage.getItem("authtoken") ? <Home /> : <Landing />}
-        />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/verify" element={<Verification />} />
-      </Routes>
+      <CredCheckState>
+        <NavBar />
+        <Routes>
+          {/* If user is not logged in, take them to the landing page */}
+          <Route
+            path="/"
+            element={localStorage.getItem("authtoken") ? <Home /> : <Landing />}
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/verify" element={<Verification />} />
+          <Route path="/myteams" element={<Teams />} />
+        </Routes>
+      </CredCheckState>
     </div>
   );
 };
