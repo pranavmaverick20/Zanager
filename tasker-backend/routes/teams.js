@@ -4,7 +4,7 @@ const express = require("express");
 const router = express.Router();
 const fetchuser = require("../middleware/fetchuser");
 const otp_gen = require("otp-generator");
-
+const User = require('../models/user')
 // Create personal team for user
 // The user who creates the team is automatically a part of the team
 router.post("/createteam", fetchuser, async (req, res) => {
@@ -147,5 +147,21 @@ router.delete("/leaveteam", fetchuser, async (req, res) => {
       .json({ success: false, error, message: "Internal server error" });
   }
 });
+
+router.get('/getusers/:id', async (req, res) => {
+  try {
+    const userTeams = await UserTeam.find({ teamId: req.params.id });
+    console.log(req.params.id);
+    console.log(userTeams);
+    const userIds = userTeams.map((userTeam) => userTeam.userId);
+    const users = await User.find({ _id: { $in: userIds } });
+    return res.status(200).json({ success: true, users });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ success: false, error, message: "Internal server error" });
+  }
+
+})
 
 module.exports = router;

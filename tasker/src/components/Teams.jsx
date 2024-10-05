@@ -7,7 +7,7 @@ import TeamsRight from "./TeamsRight";
 import { GlobalTeamsContext } from "../context/GlobalTeamsContext";
 
 const Teams = () => {
-  const { teams, setTeams } = useContext(GlobalTeamsContext);
+  const { teams, setTeams, getTeams } = useContext(GlobalTeamsContext);
   const navigate = useNavigate();
   const { checkLogin, checkVerify } = useContext(CredCheckContext);
   const [modalL, setModalL] = useState(false);
@@ -22,19 +22,21 @@ const Teams = () => {
   useEffect(() => {
     checkLogin();
     checkVerify();
-    const getTeams = async () => {
-      const response = await (
-        await fetch("http://localhost:5001/api/team/userteams", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            authtoken: localStorage.getItem("authtoken"),
-          },
-        })
-      ).json();
-      setTeams(response.teams);
-    };
     getTeams();
+    //   const getTeams = async () => {
+    //     const response = await (
+    //       await fetch("http://localhost:5001/api/team/userteams", {
+    //         method: "GET",
+    //         headers: {
+    //           "Content-Type": "application/json",
+    //           authtoken: localStorage.getItem("authtoken"),
+    //         },
+    //       })
+    //     ).json();
+    //     setTeams(response.teams);
+    //   };
+    //   getTeams();
+    // }
   }, []);
   return (
     <div className="flex justify-center h-min-screen w-screen bg-gradient-to-tl from-[#98edb0] to-[#023E8A]">

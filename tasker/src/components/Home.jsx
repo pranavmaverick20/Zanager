@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import HomeRight from "./HomeRight";
 import { FiTrash } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { FaFire } from "react-icons/fa";
+import { GlobalTeamsContext } from "../context/GlobalTeamsContext";
 
 const Home = () => {
+  const { teams, setTeams } = useContext(GlobalTeamsContext);
   const navigate = useNavigate();
   useEffect(() => {
     const getUser = async () => {
@@ -26,6 +28,7 @@ const Home = () => {
     };
     getUser();
   }, []);
+
   return (
     <div className="h-screen w-full bg-gradient-to-tl flex flex-col from-[#98edb0] bg-[#023E8A] text-neutral-50">
       <h1 className="text-5xl mt-12 font-bold  text-[#98edb0] mx-10">
