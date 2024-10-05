@@ -4,10 +4,11 @@ import { CredCheckContext } from "../context/CredCheckContext";
 import TeamCard from "./TeamCard";
 import LeaveModal from "./LeaveModal";
 import TeamsRight from "./TeamsRight";
+import { GlobalTeamsContext } from "../context/GlobalTeamsContext";
 
 const Teams = () => {
+  const { teams, setTeams } = useContext(GlobalTeamsContext);
   const navigate = useNavigate();
-  const [teams, setTeams] = useState([]);
   const { checkLogin, checkVerify } = useContext(CredCheckContext);
   const [modalL, setModalL] = useState(false);
   const [id, setId] = useState(0);
@@ -36,7 +37,7 @@ const Teams = () => {
     getTeams();
   }, []);
   return (
-    <div className="flex justify-center h-screen w-screen bg-gradient-to-tl from-[#98edb0] to-[#023E8A]">
+    <div className="flex justify-center h-min-screen w-screen bg-gradient-to-tl from-[#98edb0] to-[#023E8A]">
       <div className="flex-1 flex-col justify-center">
         <p className="text-5xl mt-12 font-bold my-10 text-[#98edb0] mx-10">
           My teams
@@ -59,7 +60,7 @@ const Teams = () => {
           ))}
         </div>
       </div>
-      <div className="flex-1 flex justify-center -mt-96">
+      <div className="flex-1 flex justify-center items-start py-56">
         <TeamsRight setTeams={setTeams} teams={teams} />
       </div>
     </div>

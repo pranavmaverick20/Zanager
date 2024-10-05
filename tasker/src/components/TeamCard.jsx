@@ -1,33 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-import LeaveModal from "./LeaveModal";
 
 const TeamCard = (props) => {
   const { name, description, _id, code } = props.team;
 
-  const maxDescriptionLength = 20;
-  const truncatedDescription =
-    description && description.length > maxDescriptionLength
-      ? `${description.slice(0, maxDescriptionLength)}...`
-      : description;
-
   return (
-    <div className="flex flex-col justify-around items-center rounded-lg bg-[#CAF0F8] text-[#0077B6] h-40 w-40 p-4 shadow-md">
-      <div className="flex flex-row justify-between items-center space-x-10">
-        <p className="font-sans font-bold text-xl text-center">{name}</p>
+    <div className="flex flex-col justify-between items-center rounded-lg bg-[#CAF0F8] text-black h-56 w-64 p-6 shadow-md transition-transform transform hover:scale-105 hover:shadow-xl">
+      <div className="flex flex-row justify-between items-center w-full">
+        <h3 className="font-sans font-bold text-xl text-left text-gray-800">
+          {name}
+        </h3>
         <FontAwesomeIcon
-          className="hover:cursor-pointer"
+          className="hover:cursor-pointer text-gray-700 hover:text-red-500 transition-colors duration-200"
           icon={faRightFromBracket}
           onClick={(e) => props.onOpenL(e, _id)}
         />
       </div>
 
-      <div>
-        <p className="overflow-hidden whitespace-nowrap text-ellipsis max-w-full">
-          {truncatedDescription}
+      <div className="flex flex-col justify-start items-start h-max w-full mt-3">
+        <p className="text-gray-600 text-sm leading-5 mb-2">
+          <span className="text-wrap text-clip whitespace-nowrap">
+            {description}
+          </span>
         </p>
-        <p>code: {code}</p>
+        <p className="text-gray-500 text-sm">Code: {code}</p>
       </div>
     </div>
   );
