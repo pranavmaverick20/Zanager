@@ -125,9 +125,6 @@ router.delete("/deletebyid/:id", fetchuser, async (req, res) => {
       return res.status(404).json({ success: false, message: "task not found", code: "tnf" });
     }
     const userid = req.data.id;
-    if (task.reportedId.toString() != userid) {
-      return res.status(404).json({ success: false, message: "Restricted access", code: "ri" });
-    }
     await Task.findByIdAndDelete(req.params.id);
     //deleting all comments of given task
     await Comment.deleteMany({ taskId: task.id });
