@@ -147,9 +147,6 @@ router.patch('/status/:id', fetchuser, async (req, res) => {
       return res.status(404).json({ success: false, message: "task not found", code: "tnf" });
     }
     const userid = req.data.id;
-    if (task.reportedId.toString() != userid) {
-      return res.status(404).json({ success: false, message: "Restricted access", code: "ri" });
-    }
     const { status } = req.body;
     await Task.findByIdAndUpdate(req.params.id, { status: status });
     return res.status(200).json({ success: true, message: "Updated" });

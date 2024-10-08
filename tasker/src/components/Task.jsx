@@ -134,7 +134,7 @@ const Task = () => {
         </div>
 
         <div className="bg-white my-2 p-6 rounded-lg w-[50%] shadow-lg ">
-          <h2 className="text-2xl font-semibold text-gray-800">Checklist</h2>
+          <h2 className="text-2xl font-semibold text-gray-800">Comments</h2>
           {task._id ? <Comments id={task._id} /> : <p>Loading...</p>}
         </div>
       </div>

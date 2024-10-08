@@ -39,7 +39,7 @@ const Teams = () => {
     // }
   }, []);
   return (
-    <div className="flex justify-center h-min-screen w-screen bg-gradient-to-tl from-[#98edb0] to-[#023E8A]">
+    <div className="flex justify-center h-screen w-screen bg-gradient-to-tl from-[#98edb0] to-[#023E8A]">
       <div className="flex-1 flex-col justify-center">
         <p className="text-5xl mt-12 font-bold my-10 text-[#98edb0] mx-10">
           My teams

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"vite ./tasker\" \"nodemon tasker-backend/index.js\""
+    "dev": "concurrently \"npm run dev --prefix tasker\" \"npm run dev --prefix tasker-backend\""
   },
   "keywords": [],
   "author": "",
