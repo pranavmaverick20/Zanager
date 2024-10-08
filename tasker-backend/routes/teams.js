@@ -151,8 +151,6 @@ router.delete("/leaveteam", fetchuser, async (req, res) => {
 router.get('/getusers/:id', async (req, res) => {
   try {
     const userTeams = await UserTeam.find({ teamId: req.params.id });
-    console.log(req.params.id);
-    console.log(userTeams);
     const userIds = userTeams.map((userTeam) => userTeam.userId);
     const users = await User.find({ _id: { $in: userIds } });
     return res.status(200).json({ success: true, users });

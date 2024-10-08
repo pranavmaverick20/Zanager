@@ -132,7 +132,6 @@ const Column = ({ title, headingColor, cards, column, setCards }) => {
       if (!cardToTransfer) return;
       cardToTransfer = { ...cardToTransfer, column };
 
-      // Call API to update the card's status in the backend using the task._id
       await fetch(`http://localhost:5001/api/tasks/status/${cardId}`, {
         method: "PATCH",
         headers: {
@@ -248,12 +247,11 @@ const Column = ({ title, headingColor, cards, column, setCards }) => {
 
 const Card = ({ title, id, column, handleDragStart }) => {
   const navigate = useNavigate();
-  const onClick = () => {
-    navigate("/about");
-    ("navigate to view task after this");
+  const onClick = (e) => {
+    navigate(`/task/${localStorage.getItem("authtoken")}/${id}`);
   };
   return (
-    <>
+    <div className="hover:cursor-pointer hover:scale-105 transition-all ease-in-out duration-200">
       <DropIndicator beforeId={id} column={column} />
       <motion.div
         onClick={onClick}
@@ -265,7 +263,7 @@ const Card = ({ title, id, column, handleDragStart }) => {
       >
         <p className="text-sm text-neutral-100">{title}</p>
       </motion.div>
-    </>
+    </div>
   );
 };
 

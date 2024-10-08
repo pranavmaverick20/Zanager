@@ -19,6 +19,7 @@ import CreateTeam from "./CreateTeam";
 import { GlobalTeamsState } from "../context/GlobalTeamsContext";
 import AddTask from "./AddTask";
 import PNF from "./PNF";
+import Task from "./Task";
 
 const App = () => {
   const [isV, setV] = useState(false);
@@ -63,6 +64,7 @@ const App = () => {
             <Route path="/jointeam" element={<JoinTeam />} />
             <Route path="/createteam" element={<CreateTeam />} />
             <Route path="/addtask" element={<AddTask />} />
+            <Route path="/task/:at/:id" element={<Task />} />
             <Route path="*" element={<PNF />} />
           </Routes>
         </GlobalTeamsState>

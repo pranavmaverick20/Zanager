@@ -145,4 +145,17 @@ router.post("/changepassword", fetchuser, async (req, res) => {
   }
 });
 
+router.get("/getuser/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const user = await User.findById(id).select("-password");
+    if (!user) {
+      return res.status(404).json({ success: false, message: "user not found", code: "unf" });
+    }
+    res.status(200).json({ success: true, user });
+  } catch (error) {
+    return res.status(500).json({ success: false, error, message: "Internal server error", code: "ise" });
+  }
+});
+
 module.exports = router;

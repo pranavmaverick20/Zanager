@@ -73,9 +73,9 @@ router.delete('/comment/:id', fetchuser, async (req, res) => {
             return res.status(404).json({ success: false, message: "comment not found", code: "cnf" });
         }
         const userid = req.data.id;
-        if (userid.toString() != comment.userId.toString()) {
-            return res.status(403).json({ success: false, message: "Restricted access", code: "ra" });
-        }
+        // if (userid.toString() != comment.userId.toString()) {
+        //     return res.status(403).json({ success: false, message: "Restricted access", code: "ra" });
+        // }
         await Comment.findByIdAndDelete(commentid);
         return res.status(200).json({ success: true, message: "Deleted" });
     } catch (error) {

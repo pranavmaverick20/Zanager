@@ -11,7 +11,7 @@ router.post('/createitem/:taskid', async (req, res) => {
             return res.status(404).json({ success: false, message: "task not found", code: "tnf" });
         }
         const { status, rank, text } = req.body;
-        if (!(status && rank && text)) {
+        if (!(rank && text)) {
             return res.status(404).json({ success: false, message: "Invalid Input", code: "ii" });
         }
         const check = await Check.create({ taskId, status, rank, text });
